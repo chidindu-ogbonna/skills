@@ -47,12 +47,19 @@ Read individual rule files for detailed explanations and code examples:
 - [rules/child-process-internals.md](rules/child-process-internals.md) - IPC, spawn, fork implementation
 - [rules/worker-threads-internals.md](rules/worker-threads-internals.md) - SharedArrayBuffer, Atomics, MessageChannel
 
+### JavaScript Internals
+
+- [rules/primordials.md](rules/primordials.md) - **Using primordials to prevent prototype pollution (required for `lib/internal/`)**
+
 ### Build & Contributing
 
+- [rules/build-and-test-workflow.md](rules/build-and-test-workflow.md) - **The edit-build-lint-test cycle (start here)**
+- [rules/configure.md](rules/configure.md) - `./configure` flags for debug builds, ASan, Ninja, etc.
 - [rules/build-system.md](rules/build-system.md) - gyp, ninja, make, cross-platform compilation
 - [rules/cli-options.md](rules/cli-options.md) - Adding CLI options and gating experimental modules
 - [rules/contributing.md](rules/contributing.md) - How to contribute to Node.js core, the process
 - [rules/commit-messages.md](rules/commit-messages.md) - Node.js-style commit message formatting and validation
+- [rules/reviewing-prs.md](rules/reviewing-prs.md) - Reviewing PRs, quality signals, and spotting low-quality AI-generated contributions
 
 ### Debugging & Profiling
 
@@ -61,6 +68,31 @@ Read individual rule files for detailed explanations and code examples:
 - [rules/memory-debugging.md](rules/memory-debugging.md) - Heap snapshots, memory leak detection
 
 ## Instructions
+
+### MANDATORY: Rebuild before testing
+
+Node.js embeds `lib/` JavaScript files into the binary at compile time via
+`js2c`. **After ANY change to `src/` or `lib/`, you MUST rebuild before
+running tests.** Without a rebuild, tests run against stale code and results
+are meaningless.
+
+```
+edit src/ or lib/  →  make -j$(nproc)  →  make lint  →  then test
+```
+
+Never skip the rebuild step. Never run `./node test/...` after editing
+without building first.
+
+Before starting work, **ask the user** about their build configuration
+(Make vs Ninja, debug vs release, what configure flags they use). Do not
+assume a specific setup. Most of the time, `./configure` has already been
+run and only `make -j$(nproc)` is needed to rebuild.
+
+See [rules/build-and-test-workflow.md](rules/build-and-test-workflow.md)
+for the full workflow including configure flags, lint targets, and test
+commands.
+
+### Core knowledge domains
 
 Apply deep knowledge of Node.js internals across these domains:
 
