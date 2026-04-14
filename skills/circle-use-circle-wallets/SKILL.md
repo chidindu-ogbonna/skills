@@ -1,5 +1,5 @@
 ---
-name: use-circle-wallets
+name: circle-use-circle-wallets
 description: "Choose and implement the right Circle wallet type for your application. Compares developer-controlled, user-controlled, and modular (passkey) wallets across custody model, key management, account types, blockchain support, and use cases. Use whenever blockchain wallet integrations are required for onchain application development. Triggers on: circle wallets, blockchain wallets, choose wallet, wallet comparison, which wallet, wallet types, EOA vs SCA vs MSCA, custody model, embedded wallet, smart account, programmable wallets, create wallet, onchain wallet."
 ---
 
@@ -55,7 +55,7 @@ Once a wallet type has been determined, TRIGGER the corresponding skill:
 
 - Developer-controlled -> `use-developer-controlled-wallets` skill
 - User-controlled -> `use-user-controlled-wallets` skill
-- Modular (Passkey) -> `use-modular-wallets` skill 
+- Modular (Passkey) -> `use-modular-wallets` skill
 
 ## Strict Rules
 

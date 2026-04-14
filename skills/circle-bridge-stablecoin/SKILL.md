@@ -1,5 +1,5 @@
 ---
-name: bridge-stablecoin
+name: circle-bridge-stablecoin
 description: "Build USDC bridging with Circle Bridge Kit SDK and Crosschain Transfer Protocol (CCTP). Supports bridging USDC between EVM chains, between EVM chains and Solana, and between any two chains on Circle Wallets (i.e Developer-Controlled Wallets or Programmable wallets). Use when: bridge USDC, setting up Bridge Kit adapters (Viem, Ethers, Solana Kit, Circle Wallets), handling bridge events, collecting custom fees, configuring transfer speed, or using the Forwarding Service. Triggers on: Bridge Kit, bridge USDC, crosschain transfer, CCTP, move USDC between chains, @circle-fin/bridge-kit, adapter-viem, adapter-ethers, adapter-solana-kit, forwarding service, bridge routes."
 ---
 
