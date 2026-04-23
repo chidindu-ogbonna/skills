@@ -9,9 +9,9 @@ Source: [refactoring.guru/design-patterns](https://refactoring.guru/design-patte
 
 **Full offline details for all 22 patterns are in the reference files — read the relevant one for problem/solution/structure/pseudocode/pros-cons/relations:**
 
-- Creational (5): [creational-patterns.md](creational-patterns.md)
-- Structural (7): [structural-patterns.md](structural-patterns.md)
-- Behavioral (10): [behavioral-patterns.md](behavioral-patterns.md)
+- Creational (5): [creational-patterns.md](references/creational-patterns.md)
+- Structural (7): [structural-patterns.md](references/structural-patterns.md)
+- Behavioral (10): [behavioral-patterns.md](references/behavioral-patterns.md)
 
 ---
 
