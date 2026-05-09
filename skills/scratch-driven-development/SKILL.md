@@ -11,20 +11,19 @@ Write a scratch script that captures current behavior → implement the change �
 
 ### 0. Bootstrap (first time only)
 
-Ensure `scratch/` exists and is gitignored so probe scripts never accidentally land in a commit:
+Ensure `scratch/` directories are gitignored globally so probe scripts never accidentally land in a commit. It is recommended to place the `scratch/` folder close to the code you are modifying (e.g., inside the specific package, service, or feature module).
 
 ```bash
-mkdir -p scratch
-grep -qxF 'scratch/' .gitignore || echo 'scratch/' >> .gitignore
+grep -qxF '**/scratch/' .gitignore || echo '**/scratch/' >> .gitignore
 ```
 
 ### 1. Observe current behavior (before script)
 
-Create `scratch/<topic>/probe-before.ts` (or a descriptive name). The script should:
+Create a `scratch/<topic>/` directory near the code you are changing, and add `probe-before.ts` (or a descriptive name). The script should:
 
 - Call the real code path against a live system or dev environment
 - Print the output clearly — what fields come back, what values, what errors
-- Be runnable standalone: `npx ts-node scratch/<topic>/probe-before.ts`
+- Be runnable standalone: `npx ts-node path/to/scratch/<topic>/probe-before.ts`
 
 Run it and save the output mentally (or in a comment) as the **baseline**.
 
@@ -34,7 +33,7 @@ Make the code change. Touch only what is required — types first if types drive
 
 ### 3. Validate with a probe (after script)
 
-Create `scratch/<topic>/probe-after.ts`. The probe should:
+Create `path/to/scratch/<topic>/probe-after.ts`. The probe should:
 
 - Exercise the same code paths as the before script
 - Assert the output matches the expected new behavior
@@ -44,7 +43,7 @@ Create `scratch/<topic>/probe-after.ts`. The probe should:
 Run it:
 
 ```bash
-npx ts-node scratch/<topic>/probe-after.ts
+npx ts-node path/to/scratch/<topic>/probe-after.ts
 ```
 
 All assertions must pass before the change is considered done.
@@ -66,10 +65,12 @@ All assertions must pass before the change is considered done.
 ## Example structure
 
 ```
-scratch/
-  discount-migration/
-    probe-before.ts   ← captures customerSelection behavior
-    probe-after.ts    ← validates context field works identically
+services/main/src/pricing/
+  index.ts
+  scratch/
+    discount-migration/
+      probe-before.ts   ← captures customerSelection behavior
+      probe-after.ts    ← validates context field works identically
 ```
 
 ---
